@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <form action="" method="post">
+        <label>Name </label>
+        <input type="text" name="name" value="" />
+        <br /><br /><br />
+        <label>Birth Date </label>
+        <select name="Year">
+            @for (int i = 1900; i <= 2023; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+        <select name="Month">
+            @for (int i = 1; i <= 12; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+        <select name="Day">
+            @for (int i = 1; i <= 31; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+        <br /><br /><br />
+        <input type="submit" name="submit" value="submit" />
+    </form>
+    @{ 
+        if(IsPost && !Request["name"].IsEmpty() && !Request["Year"].IsEmpty()&&!Request["Month"].IsEmpty() && !Request["Day"].IsEmpty())
+            {
+
+            var myYear = DateTime.Now.Year - Convert.ToInt32(Request["Year"]);
+            var myMonth = DateTime.Now.Month - Convert.ToInt32(Request["Month"]);
+            var myDay = DateTime.Now.Day - Convert.ToInt32(Request["Day"]);
+            var myName = Request["name"];
+            <div>
+                <p style="color:red">Hello  </p> <p>@myName</p>
+                <p style="color:red">Your Age is  </p> <p>@myYear years, @myMonth months and @myDay days</p>
+            </div>
+        }
+    }
+</body>
+</html>

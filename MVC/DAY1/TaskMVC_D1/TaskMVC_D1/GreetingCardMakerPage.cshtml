@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link href="~/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <div  class="split left">
+        <form method="post" action="">
+            <p>Choose a background image:</p>
+            <select name="choice" style="width:100px;">
+                <option value="0.jpg">0</option>
+                <option value="1.jpg">1</option>
+                <option value="2.jpg">2</option>
+                <option value="3.jpg">3</option>
+                <option value="4.jpg">4</option>
+                <option value="5.jpg">5</option>
+                <option value="6.jpg">6</option>
+                <option value="7.jpg">7</option>
+                <option value="8.jpg">8</option>
+                <option value="9.jpg">9</option>
+                <option value="10.jpg">10</option>
+                <option value="11.jpg">11</option>
+            </select>
+            <p>Choose a font color:</p>
+            <select name="fontColor" style="width:100px;">
+                <option value="Black">Black</option>
+                <option value="Gray">Gray</option>
+                <option value="Red">Red</option>
+                <option value="Blue">Blue</option>
+                <option value="Pink">Pink</option>
+                <option value="Purple">Purple</option>
+            </select>
+            <br />
+            <p>Choose a greeting Type:</p>
+            <input type="radio" name="greet" value="Birthday" />Birthday<br />
+            <input type="radio" name="greet" value="GetWellSoon" />Get Well Soon<br />
+            <input type="radio" name="greet" value="Valontine" />Valontine<br />
+            <input type="radio" name="greet" value="Congrats" />Congrats
+            <br /><br />
+            <input type="checkbox" name="addPicture" value="addPicture" />Add The Picture
+            <br />
+            <p>Enter The greeting Message below :</p>
+            <textarea name="message" style="height:100px;">
+
+            </textarea>
+            <br />
+            <input type="submit" name="Preview" value="Preview" />
+        </form>
+    </div>
+    @{
+        if (IsPost && !Request["choice"].IsEmpty() && !Request["fontColor"].IsEmpty() && !Request["greet"].IsEmpty() && !Request["addPicture"].IsEmpty() && !Request["message"].IsEmpty())
+        {
+            <div style="background-image:url('backgrounds/@Request["choice"]')"; class="split right">
+                <p style='color:@Request["fontColor"]'> @Request["greet"] </p>
+                @{
+                    if (Request["greet"] == "Birthday")
+                    {
+                        <img src="~/images/bd2.jpg" alt="choice" />
+                    }
+                    else if (Request["greet"] == "GetWellSoon")
+                    {
+                        <img src="~/images/well.gif" alt="choice" />
+                    }
+                    else if (Request["greet"] == "Valontine")
+                    {
+                        <img src="~/images/val.bmp" alt="choice" />
+                    }
+                    else
+                    {
+                        <img src="~/images/congrats2.gif" alt="choice" />
+                    }
+                }
+                <p style='color:@Request["fontColor"]'> @Request["message"] </p>
+            </div>
+        }
+    }
+</body>
+</html>
