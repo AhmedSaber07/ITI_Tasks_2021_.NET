@@ -1,0 +1,13 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <p>Admin Error Page</p>
+    <br />
+    <h3>Error : @Model.Exception.Message</h3>
+    <h5>In Controller : @Model.ControllerName Action : @Model.ActionName</h5>
+</body>
+</html>
